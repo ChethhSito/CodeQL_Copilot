@@ -1,0 +1,31 @@
+rules:
+  - id: grupo3.javascript.sql-concatenado
+    languages: [javascript]
+    severity: ERROR
+    message: >-
+      Una entrada HTTP se concatena en una consulta SQL. Use una consulta
+      parametrizada.
+    metadata:
+      category: security
+      cwe: CWE-89
+      confidence: HIGH
+    patterns:
+      - pattern-either:
+          - pattern: $DB.query($PREFIX + $INPUT + $SUFFIX, ...)
+          - patterns:
+              - pattern: |
+                  $SQL = $PREFIX + $INPUT + $SUFFIX;
+                  ...
+                  $DB.query($SQL, ...);
+
+  - id: grupo3.javascript.eval
+    languages: [javascript]
+    severity: ERROR
+    message: >-
+      eval ejecuta texto como código. Sustituya esta operación por un parser
+      o una lista explícita de operaciones permitidas.
+    metadata:
+      category: security
+      cwe: CWE-95
+      confidence: HIGH
+    pattern: eval(...)

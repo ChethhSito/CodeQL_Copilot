@@ -1,0 +1,11 @@
+name: "Grupo 3 CodeQL"
+
+queries:
+  - uses: security-extended
+  - uses: ./codeql
+
+paths:
+  - src
+paths-ignore:
+  - "**/node_modules/**"
+  - "**/test/**"

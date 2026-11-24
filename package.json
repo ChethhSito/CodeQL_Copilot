@@ -1,0 +1,19 @@
+{
+  "name": "grupo3-codeql-autofix-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Laboratorio académico de CodeQL, Copilot Autofix y Semgrep",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/app.test.js",
+    "test:security": "node --test test/security.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}
