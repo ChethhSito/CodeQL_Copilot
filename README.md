@@ -89,6 +89,8 @@ la vulnerabilidad que necesita detectar la primera ejecución.
 - [Arquitectura](docs/ARQUITECTURA.md)
 - [Guía de demo](docs/GUIA_DEMO.md)
 - [Base del informe](docs/INFORME_BASE.md)
+- [Estructura de la presentación](docs/PRESENTACION.md)
+- [Fuentes oficiales](docs/FUENTES.md)
 
 ## Evidencias que debe guardar el grupo
 
