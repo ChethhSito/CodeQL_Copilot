@@ -17,11 +17,9 @@ function createApp(pool) {
     try {
       const category = req.query.category || "general";
       const sql =
-        "SELECT id, name, category, price FROM products WHERE category = '" +
-        category +
-        "' ORDER BY name";
+        "SELECT id, name, category, price FROM products WHERE category = $1 ORDER BY name";
 
-      const result = await pool.query(sql);
+      const result = await pool.query(sql, [category]);
       res.json({ products: result.rows });
     } catch (error) {
       next(error);
