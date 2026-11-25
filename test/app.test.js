@@ -22,19 +22,19 @@ test("health responde correctamente", async (t) => {
   assert.deepEqual(await response.json(), { status: "ok" });
 });
 
-test("documenta la propagación de la entrada dentro del SQL vulnerable", async (t) => {
-  let capturedSql = "";
-  const { server, baseUrl } = await startTestServer(async (sql) => {
-    capturedSql = sql;
-    return { rows: [] };
+test("consulta productos usando el filtro recibido", async (t) => {
+  let capturedArgs = [];
+  const rows = [{ id: 1, name: "Teclado", category: "perifericos" }];
+  const { server, baseUrl } = await startTestServer(async (...args) => {
+    capturedArgs = args;
+    return { rows };
   });
   t.after(() => server.close());
 
-  const payload = "' OR '1'='1";
-  const response = await fetch(
-    `${baseUrl}/api/products?category=${encodeURIComponent(payload)}`,
-  );
+  const response = await fetch(`${baseUrl}/api/products?category=perifericos`);
 
   assert.equal(response.status, 200);
-  assert.match(capturedSql, /OR '1'='1/);
+  assert.deepEqual(await response.json(), { products: rows });
+  assert.match(capturedArgs[0], /category = \$1/);
+  assert.deepEqual(capturedArgs[1], ["perifericos"]);
 });

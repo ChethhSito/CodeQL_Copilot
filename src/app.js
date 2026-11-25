@@ -1,4 +1,5 @@
 const express = require("express");
+const RateLimit = require("express-rate-limit");
 
 /**
  * Crea la aplicación con una conexión inyectable para poder probar el flujo
@@ -7,6 +8,15 @@ const express = require("express");
 function createApp(pool) {
   const app = express();
   app.use(express.json());
+
+  // Evita que un cliente sature los endpoints del laboratorio con solicitudes.
+  const limiter = RateLimit({
+    windowMs: 60 * 1000,
+    max: 30,
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+  app.use(limiter);
 
   app.get("/health", (_req, res) => {
     res.json({ status: "ok" });
@@ -17,11 +27,9 @@ function createApp(pool) {
     try {
       const category = req.query.category || "general";
       const sql =
-        "SELECT id, name, category, price FROM products WHERE category = '" +
-        category +
-        "' ORDER BY name";
+        "SELECT id, name, category, price FROM products WHERE category = $1 ORDER BY name";
 
-      const result = await pool.query(sql);
+      const result = await pool.query(sql, [category]);
       res.json({ products: result.rows });
     } catch (error) {
       next(error);
