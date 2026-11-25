@@ -91,6 +91,20 @@ la vulnerabilidad que necesita detectar la primera ejecución.
 - [Base del informe](docs/INFORME_BASE.md)
 - [Estructura de la presentación](docs/PRESENTACION.md)
 - [Fuentes oficiales](docs/FUENTES.md)
+- [Resultados finales medidos](docs/RESULTADOS_FINALES.md)
+
+## Entregables finales
+
+- [Informe técnico en PDF](entregables/Informe_Tecnico_CodeQL_Copilot_Autofix.pdf)
+- [Informe técnico editable](entregables/Informe_Tecnico_CodeQL_Copilot_Autofix.docx)
+- [Presentación editable](entregables/Presentacion_CodeQL_Copilot_Autofix_Grupo3.pptx)
+- [Presentación en PDF](entregables/Presentacion_CodeQL_Copilot_Autofix_Grupo3.pdf)
+- [Guion de demostración y video en PDF](entregables/Guion_Demo_Video_Backup.pdf)
+- [Guion de demostración y video editable](entregables/Guion_Demo_Video_Backup.docx)
+- [Tabla de resultados en CSV](entregables/Tabla_Resultados.csv)
+
+Antes de entregar, complete en las portadas los nombres de los integrantes y del
+docente. La presentación también incluye un marcador para los nombres.
 
 ## Evidencias que debe guardar el grupo
 
